@@ -1,4 +1,4 @@
-export class Emplado{
+export class Empleado{
 
     id!:String;
     nombre!:String;
