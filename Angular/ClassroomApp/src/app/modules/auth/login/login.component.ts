@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public formSubmitted: boolean;
+  public fieldTextType: boolean;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
         ]]
     });
     this.formSubmitted = false;
+    this.fieldTextType = false;
   }
 
   ngOnInit(): void {
@@ -43,6 +45,10 @@ export class LoginComponent implements OnInit {
     }
     const data: LoginData = this.loginForm.value;
     console.log(data);
+  }
+
+  public toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 
 
