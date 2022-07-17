@@ -2,6 +2,7 @@
 
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Method:POST');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 header('Content-Type:application/json');
 include '../database/Database.php';
 include '../vendor/autoload.php';

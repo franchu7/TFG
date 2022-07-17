@@ -35,7 +35,7 @@
                         <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="loginForm.controls.password.errors && formSubmitted">
                             <ng-container [ngSwitch]="loginForm.controls.password.value">
                                 <ng-container *ngSwitchCase="''">La contraseña es requerida</ng-container>   
-                                <ng-container *ngSwitchDefault>La contraseña debe tener mínimo 6 caracteres y máximo 20 caracteres</ng-container>   
+                                <ng-container *ngSwitchDefault>La contraseña debe tener mínimo 4 caracteres y máximo 20 caracteres</ng-container>   
                             </ng-container>
                         </small> 
                     </div>

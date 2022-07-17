@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginData } from 'src/app/core/models/auth-data';
+import { AuthService } from 'src/app/data/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,10 @@ export class LoginComponent implements OnInit {
   public formSubmitted: boolean;
   public fieldTextType: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: [
         '',
@@ -26,7 +31,7 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(4),
           Validators.maxLength(20),
         ]]
     });
@@ -43,8 +48,15 @@ export class LoginComponent implements OnInit {
       console.log('ERROR EN EL FORMULARIO');
       return;
     }
-    const data: LoginData = this.loginForm.value;
-    console.log(data);
+
+    console.log(this.loginForm.value);
+
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email, password).subscribe (() => {
+      console.log("Usuario loggeado");
+    });
+
   }
 
   public toggleFieldTextType() {
