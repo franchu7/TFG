@@ -32,9 +32,6 @@ Instalación de dependencias (--force porque hay dos paquetes instalados con ver
 
 	npm install --force
 
-Generar documentación:
-	npm install -g @compodoc/compodoc 
-
 
 
 
