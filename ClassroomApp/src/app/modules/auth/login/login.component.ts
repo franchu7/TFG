@@ -11,11 +11,22 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+/**
+ * Formulario para iniciar sesión
+ */
 export class LoginComponent implements OnInit {
 
+  // Formulario
   public loginForm: FormGroup;
+
+  // Comprobar si se ha enviado un formulario
   public formSubmitted: boolean;
+
+  // Variable para cambiar el formato del campo de la contraseña
   public fieldTextType: boolean;
+
+  // Variable para comprobar si se está cargando el proceso de envío del formulario
   public loading: boolean;
 
   constructor(
@@ -48,6 +59,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Método para el envío del formulario de inicio de sesión
   public submitForm(): void {
     this.formSubmitted = true;
     if(this.loginForm.invalid) {
@@ -68,7 +80,7 @@ export class LoginComponent implements OnInit {
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});
       } else {
         this.toastService.success({detail: "¡Bienvenido!", summary: res.message, duration:3000});
-        const tokenInfo = this.jwtHS.decodeToken<TokenInfo>(this.authService.getToken());
+        const tokenInfo = this.jwtHS.decodeToken<TokenInfo>(this.authService.getToken()!);
         const role = tokenInfo.role;
         if(role == 'admin') {
           this.router.navigateByUrl('/admin');
@@ -76,14 +88,11 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/student');
         }
         
-      }    
+      }     
     });
-    /*this.authService.obtainToken().subscribe ((res) => {
-      console.log(res);
-    });*/
-
   }
 
+  // Método para cambiar el formato del campo de la contraseña
   public toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

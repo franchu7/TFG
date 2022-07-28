@@ -1,3 +1,7 @@
+
+/**
+ * Modelo para los datos de registro obtenidos del formulario
+ */
 export interface RegisterData {
     email: string;
     password: string;
@@ -20,9 +24,11 @@ export interface RegisterData {
     phoneNum: string;
     role: string;
     avatar: string;
-
 }
 
+/**
+ * Modelo para los datos de usuario obtenidos de la base de datos
+ */
 export interface RegisterDataFromDB {
     id: number;
     email: string;
@@ -41,9 +47,11 @@ export interface RegisterDataFromDB {
     phoneNum: string;
     role: string;
     avatar: string;
-
 }
 
+/**
+ * Modelo para guardar los posibles datos de respuesta obtenidos del servidor
+ */
 export interface UserData {
     token: string;
     status: number;
@@ -51,13 +59,15 @@ export interface UserData {
     data: RegisterDataFromDB;
 }
 
+/**
+ * Modelo para la información guardada en el token
+ */
 export interface TokenInfo { 
     iss: string,
     exp: number,
     id: string,
     email: string,
-    role: string
-            
+    role: string           
 }
 
 

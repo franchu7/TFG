@@ -10,14 +10,18 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
+
+/**
+ * Lista de estudiantes registrados en la web
+ */
 export class UserListComponent implements OnInit {
 
+  // Usuarios guardados
   public users:RegisterDataFromDB[];
 
   constructor(
     private authService: AuthService,
     private router:Router,
-    private toastService: NgToastService,
     private userService: UserService) 
   {
     this.users = [];
@@ -27,15 +31,10 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
 
+  // Método para obtener los usuarios (solo estudiantes) y guardar sus datos
   public getUsers() {
     this.userService.getUsers().subscribe((res) => {
       this.users = res.users;    
     })
-  }
-
-  public logout() {
-    this.authService.logout();
-    console.log("LOGOUT");
-    this.router.navigateByUrl("/auth/login");
   }
 }

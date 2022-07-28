@@ -8,9 +8,16 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.scss']
 })
+
+/**
+ * Mostrar los datos de un usuario
+ */
 export class UserDataComponent implements OnInit {
 
+  // Id del usuario
   public id: number;
+
+  // Datos del usuario
   public userData: RegisterDataFromDB = {
     id: 0,
     email: '',
@@ -40,10 +47,10 @@ export class UserDataComponent implements OnInit {
     this.getUser();
   }
 
+  // Método para obtener los datos del usuario y guardarlos
   public getUser() {  
     this.userService.getUser(this.id).subscribe((res) => {
       this.userData = res.data[0];
-      console.log(this.userData);
     })
   }
 

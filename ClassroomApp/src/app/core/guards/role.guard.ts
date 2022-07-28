@@ -9,6 +9,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Guard de control de acceso para un administrador
+ */
 export class RoleGuard implements CanActivate {
 
   constructor(
@@ -24,27 +28,17 @@ export class RoleGuard implements CanActivate {
       const expectedRole = route.data.expectedRole;
 
       if(!this.authService.isLoggedIn()) {
-        console.log('El usuario no ha iniciado sesión o ha expirado');
         this.toastService.error({detail: "¡Prohibido!", summary: 'El usuario no ha iniciado sesión', duration:3000});
         this.router.navigateByUrl('/auth/login');
         return false;
       } 
 
-      
-
-      const tokenInfo = this.jwtHS.decodeToken<TokenInfo>(this.authService.getToken());
+      const tokenInfo = this.jwtHS.decodeToken<TokenInfo>(this.authService.getToken()!);
       const role = tokenInfo.role;
 
       if(role != expectedRole) {
-        console.log('Usuario no autorizado');
         this.toastService.error({detail: "¡Prohibido!", summary: 'Acceso no autorizado', duration:3000});
-        console.log(route.url.toString());
-        if(role == 'admin') {
-          this.router.navigateByUrl('/admin');
-        } else {
-          this.router.navigateByUrl('/student');
-        }
-        
+        this.router.navigateByUrl('/student');      
         return false;
       }
       return true;

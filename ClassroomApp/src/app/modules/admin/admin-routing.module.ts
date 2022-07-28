@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'user/:id',
     component: UserDataComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/admin/userList'
   }
 ];
 

@@ -11,13 +11,25 @@ import { NgToastService } from 'ng-angular-popup';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
+/**
+ * Formulario para registrarse en la web
+ */
 export class SignupComponent implements OnInit {
 
+  // Formulario
   public signupForm: FormGroup;
+
+  // Comprobar si se ha enviado un formulario
   public formSubmitted: boolean;
+
+  // Variable para cambiar el formato del campo de la contraseña
   public fieldTextType: boolean;
+
+  // Variable para comprobar si se está cargando el proceso de envío del formulario
   public loading: boolean;
 
+  // Datos de registro de usuario
   public dataForm!: RegisterData;
 
 
@@ -149,6 +161,7 @@ export class SignupComponent implements OnInit {
     
   }
 
+  // Método para el envío del formulario de registro
   public submitForm(): void {
     this.formSubmitted = true;
     if(this.signupForm.invalid) {
@@ -175,6 +188,7 @@ export class SignupComponent implements OnInit {
 
   }
 
+  // Método para cambiar el formato del campo de la contraseña
   public toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

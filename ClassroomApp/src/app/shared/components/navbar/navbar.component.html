@@ -16,20 +16,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+              <!-- Página para la lista de usuarios -->
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/admin/userList">Lista de usuarios</a>
               </li>
+
+              <!-- Página para la lista de usuarios con sus notas (Todavía no se ha realizado...) -->
               <li class="nav-item">
                 <a class="nav-link" href="#">Notas de usuarios</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled"
-                  >Disabled</a
-                >
-              </li>
+
+              <!-- Cerrar la sesión actual -->
               <li class="nav-item">
                 <button class="btn btn-dark" (click)="logout()">
                     <span class=""><fa-icon [icon]="faPowerOff"></fa-icon></span>  

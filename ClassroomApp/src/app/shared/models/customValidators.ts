@@ -1,5 +1,9 @@
 import { FormGroup } from "@angular/forms";
 
+
+/**
+ * Función para validar que el valor en el campo de 'Confirmar contraseña' sea igual que en el de 'Contraseña'
+ */
 export function matchPassword(password: string, confirmPassword: string) {
       return (formGroup: FormGroup) => {
         const control = formGroup.get('password');

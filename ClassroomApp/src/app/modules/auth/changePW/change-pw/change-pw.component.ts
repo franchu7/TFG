@@ -11,11 +11,22 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './change-pw.component.html',
   styleUrls: ['./change-pw.component.scss']
 })
+
+/**
+ * Formulario para cambiar la contraseña de un usuario registrado
+ */
 export class ChangePWComponent implements OnInit {
 
+  // Formulario
   public changePWForm: FormGroup;
+
+  // Comprobar si se ha enviado un formulario
   public formSubmitted: boolean;
+
+  // Variable para cambiar el formato del campo de la contraseña
   public fieldTextType: boolean;
+
+  // Variable para comprobar si se está cargando el proceso de envío del formulario
   public loading: boolean;
 
   constructor(
@@ -58,6 +69,7 @@ export class ChangePWComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Método para el envío del formulario de cambio de contraseña
   public submitForm(): void {
     this.formSubmitted = true;
     if(this.changePWForm.invalid) {
@@ -84,6 +96,7 @@ export class ChangePWComponent implements OnInit {
 
   }
 
+  // Método para cambiar el formato del campo de la contraseña
   public toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

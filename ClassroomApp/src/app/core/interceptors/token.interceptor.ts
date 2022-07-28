@@ -4,14 +4,17 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse,
-  HttpHeaders
+  HttpErrorResponse
 } from '@angular/common/http';
 import { catchError, Observable, throwError, mergeMap } from 'rxjs';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Injectable()
+
+/**
+ * Interceptor para guardar en la solicitud HTTP el token del usuario loggeado
+ */
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -33,14 +36,12 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
           let errorMsg = '';
           if (error.error instanceof ErrorEvent) {
-              console.log('This is client side error');
               errorMsg = `Error: ${error.error.message}`;
               if(error.status === 401) {
                 this.authService.logout();
                 this.router.navigateByUrl('/auth/login');
               }
           } else {
-              console.log('This is server side error');
               errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
           }
           console.log(errorMsg);

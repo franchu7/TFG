@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Guard de control de acceso para un usuario autenticado
+ */
 export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: NgToastService
     ){}
 
   canActivate(
@@ -18,7 +24,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(!this.authService.isLoggedIn()) {
-        console.log('Token no válido o expirado');
+        this.toastService.error({detail: "¡Prohibido!", summary: 'El usuario no ha iniciado sesión', duration:3000});
         this.router.navigateByUrl('/auth/login');
         return false;
       }

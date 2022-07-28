@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
+import { StudentCardComponent } from './components/student-card/student-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
@@ -11,7 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
-    UserCardComponent,
+    StudentCardComponent,
     NavbarComponent,
     FooterComponent
   ],
@@ -21,7 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   exports: [
     ConfirmDialogComponent,
-    UserCardComponent,
+    StudentCardComponent,
     NavbarComponent,
     FooterComponent  
   ]

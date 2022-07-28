@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IroutesGuard } from './iroutes.guard';
+import { NoAuthGuard } from './noAuth.guard';
 
-describe('IroutesGuard', () => {
-  let guard: IroutesGuard;
+describe('AdminGuard', () => {
+  let guard: NoAuthGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(IroutesGuard);
+    guard = TestBed.inject(NoAuthGuard);
   });
 
   it('should be created', () => {

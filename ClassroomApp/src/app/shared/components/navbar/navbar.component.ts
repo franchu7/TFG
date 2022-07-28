@@ -8,6 +8,10 @@ import { AuthService } from 'src/app/data/services/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
+/**
+ * Componente para la barra de navegación
+ */
 export class NavbarComponent implements OnInit {
 
   faUser = faUser;
@@ -20,6 +24,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Método para cerrar sesión
   public logout() {
     console.log("LOGOUT");
     this.authService.logout();

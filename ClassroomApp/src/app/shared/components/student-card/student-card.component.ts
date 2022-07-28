@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ɵɵqueryRefresh } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterDataFromDB } from 'src/app/core/models/auth-data';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
@@ -8,13 +8,15 @@ import { NgToastService } from 'ng-angular-popup';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-user-card',
-  templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.scss']
+  selector: 'app-student-card',
+  templateUrl: './student-card.component.html',
+  styleUrls: ['./student-card.component.scss']
 })
-export class UserCardComponent implements OnInit {
 
-  
+/**
+ * Componente que representa al usuario registrado en la web
+ */
+export class StudentCardComponent implements OnInit {
 
   @Input() user: RegisterDataFromDB = {
     id: 0,
@@ -37,16 +39,11 @@ export class UserCardComponent implements OnInit {
 
   }
 
-  result: string = '';
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
-    private toastService: NgToastService,
-    private userService: UserService) { 
-      
-      
+    private userService: UserService) {   
     }
 
   ngOnInit(): void {
@@ -54,7 +51,7 @@ export class UserCardComponent implements OnInit {
   }
 
   
-
+  // Borrar al usuario
   public deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe((res) => {
       console.log(res);
@@ -62,10 +59,12 @@ export class UserCardComponent implements OnInit {
     })
   }
 
+  // Recargar la página 
   public refresh() {
     window.location.reload();
   }
 
+  // Método para el diálogo de confirmación en el borrado de un usuario
   public openDialog(id: number): void {
     this.dialog
       .open(ConfirmDialogComponent, {
@@ -79,13 +78,9 @@ export class UserCardComponent implements OnInit {
       });
   }
 
+  // Obtener la información del usuario mostrándola en otra página
   public getUserData(id: number) {
     this.router.navigateByUrl('/admin/user/'+id);
   }
-
-  
-
-
- 
 
 }
