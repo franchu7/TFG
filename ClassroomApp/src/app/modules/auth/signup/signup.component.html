@@ -1,0 +1,240 @@
+
+<div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5">
+  
+              <div class="mb-md-4 mt-md-3 pb-0">
+                
+                <h2 class="fw-bold mb-2 text-uppercase text-center">Registro</h2>
+                <p class="text-white-50 mb-3 text-center">Introduzca los siguientes datos</p>
+                <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
+                  <!--------------------- Nombre completo ---------------------> 
+                  <div formGroupName="person">
+                    <!--------------------- Nombre ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="name">Nombre*</label>
+                      <input type="text" class="form-control form-control-lg mb-1" formControlName="name" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('person.name')!.errors && formSubmitted">
+                          <ng-container [ngSwitch]="signupForm.get('person.name')!.value">
+                              <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>   
+                              <ng-container *ngSwitchDefault>El nombre es inválido</ng-container>   
+                          </ng-container>
+                      </small> 
+                    </div>
+
+                    <!--------------------- Apellido1 ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="surname1">Primer apellido*</label>
+                      <input type="text" class="form-control form-control-lg mb-1" formControlName="surname1" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('person.surname1')!.errors && formSubmitted">
+                          <ng-container [ngSwitch]="signupForm.get('person.surname1')!.value">
+                              <ng-container *ngSwitchCase="''">El primer apellido es requerido</ng-container>   
+                              <ng-container *ngSwitchDefault>El primer apellido es inválido</ng-container>   
+                          </ng-container>
+                      </small> 
+                    </div>
+
+                    <!--------------------- Apellido2 ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="surname2">Segundo apellido</label>
+                      <input type="text" class="form-control form-control-lg mb-1" formControlName="surname2" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('person.surname2')!.errors && formSubmitted">
+                        <ng-container>El segundo apellido es inválido</ng-container>   
+                    </small> 
+                    </div>
+                  </div>
+
+                  <!--------------------- DNI ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="dni">DNI*</label>
+                    <input type="text" class="form-control form-control-lg mb-1" formControlName="dni" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('dni')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('dni')!.value">
+                            <ng-container *ngSwitchCase="''">El DNI es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El DNI es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--------------------- Sexo ---------------------> 
+                  <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                    <label class="mb-0 me-4">Sexo:</label>
+  
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" id="femaleGender"
+                        value="mujer" formControlName="gender" />
+                      <label class="form-check-label" for="femaleGender">Mujer</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" id="maleGender"
+                        value="hombre" formControlName="gender" />
+                      <label class="form-check-label" for="maleGender">Hombre</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0">
+                      <input class="form-check-input" type="radio" id="otherGender"
+                        value="otro" formControlName="gender" />
+                      <label class="form-check-label" for="otherGender">Otro</label>
+                    </div>
+  
+                  </div>
+
+                  <!--------------------- Dirección completa ---------------------> 
+                  <div formGroupName="address">           
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="address">Dirección</label>
+                      <div class="input-group">
+                        <!--------------------- Tipo de vía ---------------------> 
+                        <select class="form-control form-control-lg mb-1" aria-label="Default select example" formControlName="roadType">
+                          <option value="C." selected>C.</option>
+                          <option value="Av.">Av.</option>
+                          <option value="Vía">Vía</option>
+                        </select>
+                        <!--------------------- Calle ---------------------> 
+                        <input type="text" placeholder="Calle*" class="form-control form-control-lg mb-1 w-50" formControlName="street" />                     
+                      </div>
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('address.street')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('address.street')!.value">
+                            <ng-container *ngSwitchCase="''">La calle es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La calle es inválida</ng-container>   
+                        </ng-container>
+                      </small>     
+                      <div class="input-group mt-1">
+                        <!--------------------- Número de calle ---------------------> 
+                        <input type="text" placeholder="Número*" class="form-control form-control-lg mb-1" formControlName="streetNum" />
+                        <!--------------------- Piso ---------------------> 
+                        <input type="text" placeholder="Piso" class="form-control form-control-lg mb-1" formControlName="floor" />
+                      </div>
+                      
+                      
+                      <small class="bg-danger mt-1 ml-5 px-2 py-1 rounded" *ngIf="signupForm.get('address.streetNum')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('address.streetNum')!.value">
+                            <ng-container *ngSwitchCase="''">El número es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El número es inválido</ng-container>   
+                        </ng-container>
+                      </small> 
+                      <small class="bg-danger px-2 py-1 rounded" *ngIf="signupForm.get('address.floor')!.errors && formSubmitted">
+                        <ng-container>El piso es inválido</ng-container>   
+                      </small> 
+                    
+                      
+                    </div>
+                  </div>
+
+                  <!--------------------- Código postal ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="zipCode">Código postal*</label>
+                    <input type="text" placeholder="" class="form-control form-control-lg mb-1" formControlName="zipCode" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('zipCode')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('zipCode')!.value">
+                            <ng-container *ngSwitchCase="''">El código postal es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El código postal es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--------------------- Localidad ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="location">Localidad*</label>
+                    <input type="text" placeholder="" class="form-control form-control-lg mb-1" formControlName="location" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('location')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('location')!.value">
+                            <ng-container *ngSwitchCase="''">La localidad es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La localidad es inválida</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--------------------- Provincia ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="province">Provincia*</label>
+                    <input type="text" placeholder="" class="form-control form-control-lg mb-1" formControlName="province" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('province')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('province')!.value">
+                            <ng-container *ngSwitchCase="''">La provincia es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La provincia es inválida</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  
+
+                  <!--------------------- Teléfono ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="phoneNum">Teléfono*</label>
+                    <input type="text" class="form-control form-control-lg mb-1" formControlName="phoneNum" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('phoneNum')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('phoneNum')!.value">
+                            <ng-container *ngSwitchCase="''">El teléfono es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El teléfono es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                </div>
+
+                  <!--------------------- Email ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="email">Email*</label>
+                      <input type="email" class="form-control form-control-lg mb-1" formControlName="email" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('email')!.errors && formSubmitted">
+                          <ng-container [ngSwitch]="signupForm.get('email')!.value">
+                              <ng-container *ngSwitchCase="''">El email es requerido</ng-container>   
+                              <ng-container *ngSwitchDefault>El email es inválido</ng-container>   
+                          </ng-container>
+                      </small> 
+                  </div>
+                  
+                  <!--------------------- Contraseña ---------------------> 
+                  <div class="form-outline form-white mb-3">
+                      <label class="form-label" for="password">Contraseña*</label>
+                      
+                      <input [type]="fieldTextType ? 'text' : 'password'" type="password" class="form-control mb-1 form-control-lg" formControlName="password" />  
+                      <i class="fa eye" [ngClass]="{
+                        'fa-solid fa-eye-slash': !fieldTextType,
+                        'fa-solid fa-eye': fieldTextType
+                      }" (click)="toggleFieldTextType()"></i>
+        
+
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('password')!.errors && formSubmitted">
+                          <ng-container [ngSwitch]="signupForm.get('password')!.value">
+                              <ng-container *ngSwitchCase="''">La contraseña es requerida</ng-container>   
+                              <ng-container *ngSwitchDefault>La contraseña debe tener al menos un número, una minúscula, una mayúscula, mínimo 4 caracteres y máximo 20 caracteres</ng-container>   
+                          </ng-container>
+                      </small> 
+                  </div>
+
+                  <!--------------------- Confirmar Contraseña ---------------------> 
+                  <div class="form-outline form-white mb-3">
+                    <label class="form-label" for="confPassword">Confirmar contraseña*</label>
+                    
+                    <input [type]="fieldTextType ? 'text' : 'password'" type="password" class="form-control mb-1 form-control-lg" formControlName="confirmPassword" />  
+
+                    <div *ngIf="signupForm.get('confirmPassword')!.errors && formSubmitted">
+                        <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('confirmPassword')!.errors!.required">
+                          La confirmación de contraseña es requerida
+                        </small>
+                        <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('confirmPassword')!.errors!.mustMatch">
+                          La contraseña no coincide
+                        </small>
+                    </div> 
+                  </div>
+ 
+                  <button class="btn btn-outline-light btn-lg px-5 mb-3" type="submit">
+                    Registrarse
+                    
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm "></span>
+                    
+                  </button> 
+
+                </form>
+                <p class="mb-0">¿Tiene una cuenta? <a routerLink="/auth/login" class="text-white-50 fw-bold">Inicie sesión aquí</a></p>   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+

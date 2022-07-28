@@ -1,0 +1,51 @@
+.card {
+    background-color: rgb(142, 147, 0);
+    border: 6px solid rgba(0,0,0,0.25);
+    border-radius: 20px;
+    box-shadow: 0px 0px 1px 1px black;
+
+   
+
+    margin: 1rem auto;
+    /*padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid green;
+    transition: 0.7s all ease-in-out;
+    margin: 1rem auto;*/
+
+    &-img {
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        float: left;
+    }
+
+    img {
+        background: beige;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.15);
+    }
+    
+
+    &-body {
+        float: right;
+    }
+}
+
+.icons {
+    &-trash {
+        color: red;
+        cursor: pointer;
+    }
+    &-mGlass {
+        color: blue;
+        cursor: pointer;
+    }
+    
+    float: right;
+    
+    //margin: -35px -30px; */
+}

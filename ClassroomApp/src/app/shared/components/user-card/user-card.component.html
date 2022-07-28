@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">
+        <div class="card-img">
+            
+            <img src="{{user.avatar}}" alt="" id="avatar">
+        </div>
+        <div class="icons">
+            <div class="icons-trash mb-3">
+                <i class="fa fa-trash fa-2x" (click)="openDialog(user.id)"></i>
+            </div>
+            <div class="icons-mGlass">     
+                <i class="fa fa-magnifying-glass fa-2x" (click)="getUserData(user.id)"></i>    
+            </div>
+        </div>
+    </div>   
+    
+    <div class="card-body">
+      <h4>{{user.name}} {{user.surname1}} {{user.surname2}}</h4>
+      <button class="btn btn-primary">Datos personales</button>
+    </div>
+</div>
