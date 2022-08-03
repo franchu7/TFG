@@ -1,0 +1,226 @@
+<app-navbar></app-navbar>
+
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="header py-2 text-center">
+            <h1>Actualizar datos del alumno</h1>
+        </div> 
+        <div class="card mt-2 bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+
+            <div class="mb-md-4 mt-md-3 pb-0">
+      
+ 
+            <div class="imgDiv py-3 d-flex justify-content-center align-items-center">
+                
+                <img id="avatar" class ="img" src="{{userData.avatar}}" alt="">
+                
+            </div>
+            <input type="file" accept="image/*" class="file-upload mt-1 mb-3" (change)="onSelectImage($event)" >
+
+            <div class="col-12"> 
+                <form [formGroup]="updateDataForm" (ngSubmit)="submitForm()">       
+                <!--------------------- Nombre completo ---------------------> 
+                <div formGroupName="person">
+                    <!--------------------- Nombre ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="name">Nombre</label>
+                      <input id="name" type="text" placeholder="{{userData.name}}" class=" form-control form-control-lg mb-1" formControlName="name" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('person.name')!.errors && updateDataForm.get('person.name')!.dirty">
+                          <ng-container [ngSwitch]="updateDataForm.get('person.name')!.value">
+                              <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>   
+                              <ng-container *ngSwitchDefault>El nombre es inválido</ng-container>   
+                          </ng-container>
+                      </small> 
+                    </div>
+
+                    <!--------------------- Apellido1 ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="surname1">Primer apellido</label>
+                      <input type="text" placeholder="{{userData.surname1}}" class="form-control form-control-lg mb-1" formControlName="surname1" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('person.surname1')!.errors && updateDataForm.get('person.surname1')!.dirty">
+                          <ng-container [ngSwitch]="updateDataForm.get('person.surname1')!.value">
+                              <ng-container *ngSwitchCase="''">El primer apellido es requerido</ng-container>   
+                              <ng-container *ngSwitchDefault>El primer apellido es inválido</ng-container>   
+                          </ng-container>
+                      </small> 
+                    </div>
+
+                    <!--------------------- Apellido2 ---------------------> 
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="surname2">Segundo apellido</label>
+                      <input type="text" placeholder="{{userData.surname2}}" class="form-control form-control-lg mb-1" formControlName="surname2" />
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('person.surname2')!.errors && updateDataForm.get('person.surname2')!.dirty">
+                        <ng-container>El segundo apellido es inválido</ng-container>   
+                    </small> 
+                    </div>
+                  </div>
+
+                  <!--------------------- DNI ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="dni">DNI</label>
+                    <input type="text" placeholder="{{userData.dni}}" class="form-control form-control-lg mb-1" formControlName="dni" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('dni')!.errors && updateDataForm.get('dni')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('dni')!.value">
+                            <ng-container *ngSwitchCase="''">El DNI es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El DNI es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  
+
+                  <!--------------------- Sexo ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="sexo">Sexo</label>
+                    <input type="text" placeholder="{{userData.gender}}" class="form-control form-control-lg mb-1" formControlName="gender" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('gender')!.errors && updateDataForm.get('gender')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('gender')!.value">
+                            <ng-container *ngSwitchCase="''">El sexo es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El sexo es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--<div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                    <label class="mb-0 me-4">Sexo:</label>
+  
+    
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" id="femaleGender"
+                        value="Mujer" formControlName="gender"/>
+                      <label class="form-check-label" for="femaleGender">Mujer</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0 me-4">
+                      <input class="form-check-input" type="radio" id="maleGender"
+                        value="Hombre" formControlName="gender" />
+                      <label class="form-check-label" for="maleGender">Hombre</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline mb-0">
+                      <input class="form-check-input" type="radio" id="otherGender"
+                        value="Otro" formControlName="gender" />
+                      <label class="form-check-label" for="otherGender">Otro</label>
+                    </div>
+  
+                  </div>-->
+
+                  <!--------------------- Dirección completa ---------------------> 
+                  <div formGroupName="address">           
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="address">Dirección</label>
+                      <div class="input-group">
+                        <!--------------------- Tipo de vía ---------------------> 
+                       <!-- <select class="form-control form-control-lg mb-1" aria-label="Default select example" formControlName="roadType">
+                            <option value="{{getRoadType(userData.street)}}" selected disabled hidden>
+                            <option value="C.">C.</option>
+                            <option value="Av.">Av.</option>
+                            <option value="Vía">Vía</option>
+                          </select>-->
+
+                        <!--------------------- Calle ---------------------> 
+                        <input type="text" placeholder="{{userData.street}}" class="form-control form-control-lg mb-1 w-50" formControlName="street" />                     
+                      </div>
+                      <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('address.street')!.errors && updateDataForm.get('address.street')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('address.street')!.value">
+                            <ng-container *ngSwitchCase="''">La calle es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La calle es inválida</ng-container>   
+                        </ng-container>
+                      </small>     
+                      <div class="input-group mt-1">
+                        <!--------------------- Número de calle ---------------------> 
+                        <input type="text" placeholder="{{userData.streetNum}}" class="form-control form-control-lg mb-1" formControlName="streetNum" />
+                        <!--------------------- Piso ---------------------> 
+                        <input type="text" placeholder="{{userData.floor}}" class="form-control form-control-lg mb-1" formControlName="floor" />
+                      </div>
+                      
+                      
+                      <small class="bg-danger mt-1 ml-5 px-2 py-1 rounded" *ngIf="updateDataForm.get('address.streetNum')!.errors && updateDataForm.get('address.streetNum')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('address.streetNum')!.value">
+                            <ng-container *ngSwitchCase="''">El número es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El número es inválido</ng-container>   
+                        </ng-container>
+                      </small> 
+                      <small class="bg-danger px-2 py-1 rounded" *ngIf="updateDataForm.get('address.floor')!.errors && updateDataForm.get('address.floor')!.dirty">
+                        <ng-container>El piso es inválido</ng-container>   
+                      </small> 
+                    
+                      
+                    </div>
+                  </div>
+
+                  <!--------------------- Código postal ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="zipCode">Código postal</label>
+                    <input type="text" placeholder="{{userData.zipCode}}" class="form-control form-control-lg mb-1" formControlName="zipCode" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('zipCode')!.errors && updateDataForm.get('zipCode')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('zipCode')!.value">
+                            <ng-container *ngSwitchCase="''">El código postal es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El código postal es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--------------------- Localidad ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="location">Localidad</label>
+                    <input type="text" placeholder="{{userData.location}}" class="form-control form-control-lg mb-1" formControlName="location" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('location')!.errors && updateDataForm.get('location')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('location')!.value">
+                            <ng-container *ngSwitchCase="''">La localidad es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La localidad es inválida</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  <!--------------------- Provincia ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="province">Provincia</label>
+                    <input type="text" placeholder="{{userData.province}}" class="form-control form-control-lg mb-1" formControlName="province" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('province')!.errors && updateDataForm.get('province')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('province')!.value">
+                            <ng-container *ngSwitchCase="''">La provincia es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La provincia es inválida</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
+                  
+
+                  <!--------------------- Teléfono ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="phoneNum">Teléfono</label>
+                    <input type="text" placeholder="{{userData.phoneNum}}" class="form-control form-control-lg mb-1" formControlName="phoneNum" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateDataForm.get('phoneNum')!.errors && updateDataForm.get('phoneNum')!.dirty">
+                        <ng-container [ngSwitch]="updateDataForm.get('phoneNum')!.value">
+                            <ng-container *ngSwitchCase="''">El teléfono es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El teléfono es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                </div>
+
+                  
+
+ 
+                  <button class="btn btn-outline-light btn-lg px-5 mb-3" type="submit">
+                    Actualizar datos
+                    
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm "></span>
+                    
+                  </button> 
+            </form>
+            </div>
+    </div>  
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    
+</div>
+
+<app-footer></app-footer>

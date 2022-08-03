@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserData } from 'src/app/core/models/auth-data';
+import { RegisterData, UserData } from 'src/app/core/models/auth-data';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,12 @@ export class UserService {
   }
 
   // Actualizar la contraseña de un usuario (posteriormente para actualizar cualquier dato)
-  public updateUser(email: string, password: string) {
-    return this.http.post<UserData>(env.apiUrl+'/auth/update-user.php', {email, password});
+  public updatePassword(email: string, password: string) {
+    return this.http.post<UserData>(env.apiUrl+'/auth/update-password.php', {email, password});
+  }
+
+  // Actualizar la contraseña de un usuario (posteriormente para actualizar cualquier dato)
+  public updateUser(id:number, userData: RegisterData) {
+    return this.http.post<UserData>(env.apiUrl+'/auth/update-user.php', {id,userData});
   }
 }

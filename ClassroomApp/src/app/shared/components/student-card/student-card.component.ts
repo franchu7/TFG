@@ -83,4 +83,9 @@ export class StudentCardComponent implements OnInit {
     this.router.navigateByUrl('/admin/user/'+id);
   }
 
+  // Actualizar la información del usuario mostrándo los datos del usuario en otra página
+  public updateUserData(id: number) {
+    this.router.navigateByUrl('/admin/userUpdate/'+id);
+  }
+
 }

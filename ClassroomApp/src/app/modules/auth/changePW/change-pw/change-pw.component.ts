@@ -83,7 +83,7 @@ export class ChangePWComponent implements OnInit {
 
     const { email, password } = this.changePWForm.value;
 
-    this.userService.updateUser(email, password).subscribe((res) => {
+    this.userService.updatePassword(email, password).subscribe((res) => {
       console.log(res);
       if(res.status == 0) {
         this.loading = false;
