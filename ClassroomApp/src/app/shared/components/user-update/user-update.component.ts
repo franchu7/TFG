@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { Observable, Subject } from 'rxjs';
 import { RegisterData, RegisterDataFromDB } from 'src/app/core/models/auth-data';
+import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 class ImageSnippet {
@@ -19,9 +18,9 @@ class ImageSnippet {
 export class UserUpdateComponent implements OnInit {
 
   // Id del usuario
-  public id: number;
+  public id!: number;
 
-  public updateDataForm: FormGroup;
+  public updateDataForm!: FormGroup;
   public loading: boolean;
   public formSubmitted;
   public dataForm!: RegisterData;
@@ -39,6 +38,7 @@ export class UserUpdateComponent implements OnInit {
     surname1: '',
     surname2: '',
     dni: '',
+    age: 0,
     gender: '',
     street: '',
     streetNum: '',
@@ -55,11 +55,18 @@ export class UserUpdateComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private toastService: NgToastService,
     private router: Router,
     ) {
-      this.id = +this.route.snapshot.params['id']; 
+      if(this.route.snapshot.params['id']) {
+        this.id = +this.route.snapshot.params['id']; 
+        this.getUser();
+      } else {
+          this.getTokenData();
+      }
+
 
       this.updateDataForm = this.fb.group({
         person: this.fb.group({
@@ -92,6 +99,13 @@ export class UserUpdateComponent implements OnInit {
           [
             Validators.required,
             Validators.pattern(/^[0-9]{8}[a-zA-Z]$/)
+          ]
+        ],
+        age: [
+          '',
+          [
+            Validators.required,
+            Validators.min(18)
           ]
         ],
         gender: [
@@ -156,91 +170,79 @@ export class UserUpdateComponent implements OnInit {
           ]
         )    
       });
-
+    
       this.loading = false;
       this.formSubmitted = false;
   }
 
-  getRoadType(street: string) {
-    const streetArray = street.split(" ");
-    return streetArray[0];
-  }
-
   ngOnInit(): void {
-    this.getUser();
   }
 
   // Método para el envío del formulario de registro
   public submitForm(): void {
     this.formSubmitted = true;
-    /*if(this.updateDataForm.dirty) {
-      if(this.updateDataForm.invalid) {
-        
-        this.toastService.error({detail: "Error en el formulario", summary: "Los datos introducidos no son correctos", duration:3000});
-        return;
-      }     
-    }*/
-
-    //this.updateDataForm
-
-    if(!this.updateDataForm.get('person.name')?.dirty) {
-      this.updateDataForm.get('person.name')?.setValue(this.userData.name);
+    if(this.updateDataForm.invalid) {
+      this.toastService.error({detail: "Error en el formulario", summary: "Los datos introducidos no son correctos", duration:3000});
+      return;
     }
-
-    if(!this.updateDataForm.get('person.surname1')?.dirty) {
-      this.updateDataForm.get('person.surname1')?.setValue(this.userData.surname1);
-    }
-
-    if(!this.updateDataForm.get('person.surname2')?.dirty) {
-      this.updateDataForm.get('person.surname2')?.setValue(this.userData.surname2);
-    }
-
-    if(!this.updateDataForm.get('dni')?.dirty) {
-      this.updateDataForm.get('dni')?.setValue(this.userData.dni);
-    }
-
-    if(!this.updateDataForm.get('gender')?.dirty) {
-      this.updateDataForm.get('gender')?.setValue(this.userData.gender);
-    }
-
-    if(!this.updateDataForm.get('address.street')?.dirty) {
-      this.updateDataForm.get('address.street')?.setValue(this.userData.street);
-    }
-
-    if(!this.updateDataForm.get('address.streetNum')?.dirty) {
-      this.updateDataForm.get('address.streetNum')?.setValue(this.userData.streetNum);
-    }
-
-    if(!this.updateDataForm.get('address.floor')?.dirty) {
-      this.updateDataForm.get('address.floor')?.setValue(this.userData.floor);
-    }
-
     this.loading = true;
 
     this.dataForm = this.updateDataForm.value;
-    
-    
 
     this.dataForm.avatar = document.getElementById('avatar')?.getAttribute('src')!;
     console.log(this.dataForm);
 
-    /*this.userService.updateUser(this.id,this.dataForm).subscribe((res) => {
+    this.userService.updateUser(this.id,this.dataForm).subscribe((res) => {
       console.log(res);
       if(res.status == 0) {
         this.loading = false;
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});
       } else {
         this.toastService.success({detail: "¡Felicidades!", summary: res.message, duration:3000});
-        this.router.navigateByUrl('/admin/userList');    
+        this.authService.obtainDecodeToken().subscribe((res) => {
+          const role = res.data.role;
+          if(role == 'student') {
+            this.router.navigateByUrl('/student/studentProfile');
+          } else {
+            this.router.navigateByUrl('/admin/userList');    
+          }
+        })
       }    
-    });*/
+    });
 
   }
 
-  // Método para obtener los datos del usuario y guardarlos
+  public getTokenData() {  
+    this.authService.obtainDecodeToken().subscribe((res) => {
+      this.id = res.data.id;
+      this.getUser();
+    })
+  }
+
+  // Método para obtener los datos del usuario y mostrarlos en el formulario
   public getUser() {  
     this.userService.getUser(this.id).subscribe((res) => {
       this.userData = res.data[0];
+
+      this.updateDataForm.get('person')!.setValue({
+        name: this.userData.name,
+        surname1: this.userData.surname1,
+        surname2: this.userData.surname2,  
+      });
+      this.updateDataForm.get('address')!.setValue({
+        street: this.userData.street,
+        streetNum: this.userData.streetNum,
+        floor: this.userData.floor
+      });
+      this.updateDataForm.patchValue({
+        dni: this.userData.dni,  
+        age: this.userData.age,
+        gender: this.userData.gender,
+        zipCode: this.userData.zipCode,
+        location: this.userData.location,
+        province: this.userData.province,
+        phoneNum: this.userData.phoneNum
+      });
     });
   }
 
@@ -251,7 +253,6 @@ export class UserUpdateComponent implements OnInit {
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=(event:any)=>{
         this.userData.avatar = event.target.result;
-        console.log(this.userData.avatar);
       }
     }
   }

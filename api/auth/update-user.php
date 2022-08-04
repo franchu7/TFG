@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     $dni = $data->userData->dni;
 
+    $age = $data->userData->age;
+
     $gender = $data->userData->gender;
     
     $street =  $data->userData->address->street;
@@ -46,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 'surname1' => $surname1,
                 'surname2' => $surname2,
                 'dni' => $dni,
+                'age' => $age,
                 'gender' => $gender,
                 'street' => $street,
                 'streetNum' => $streetNum,

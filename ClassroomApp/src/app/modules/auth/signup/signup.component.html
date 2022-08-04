@@ -60,6 +60,18 @@
                     </small> 
                   </div>
 
+                  <!--------------------- Edad ---------------------> 
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="age">Edad*</label>
+                    <input type="number" class="form-control form-control-lg mb-1" formControlName="age" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="signupForm.get('age')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="signupForm.get('age')!.value">
+                            <ng-container *ngSwitchCase="''">La edad es requerida</ng-container>   
+                            <ng-container *ngSwitchDefault>La edad debe ser mayor que 18</ng-container>   
+                        </ng-container>
+                    </small> 
+                  </div>
+
                   <!--------------------- Sexo ---------------------> 
                   <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 

@@ -60,9 +60,9 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  /*public obtainToken() {
-    return this.http.get<TokenInfo>(env.apiUrl+'/auth/read-user.php');
-  }*/
+  public obtainDecodeToken() {
+    return this.http.get<any>(env.apiUrl+'/auth/read-user.php');
+  }
 
   // Método para registrarse
   public register(data: RegisterData) {

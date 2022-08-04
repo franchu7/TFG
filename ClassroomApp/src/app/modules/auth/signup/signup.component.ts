@@ -71,6 +71,13 @@ export class SignupComponent implements OnInit {
           Validators.pattern(/^[0-9]{8}[a-zA-Z]$/)
         ]
       ],
+      age: [
+        '',
+        [
+          Validators.required,
+          Validators.min(18)
+        ]
+      ],
       gender: [
         'Mujer'
       ],

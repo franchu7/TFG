@@ -26,6 +26,7 @@ export class StudentCardComponent implements OnInit {
     surname1: '',
     surname2: '',
     dni: '',
+    age: 0,
     gender: '',
     street: '',
     streetNum: '',

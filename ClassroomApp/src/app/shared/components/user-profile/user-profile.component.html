@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<div class="container pb-5">
     <div class="header mt-3 py-2 mx-5 text-center">
-        <h1>Datos del alumno</h1>
+        <h1>Datos del usuario</h1>
     </div>   
         <div class="group bg-dark row  py-5 px-5 mx-5 mt-3 mb-5"> 
             <div class="col-12">        
@@ -14,6 +14,7 @@
                         <small class="text-primary ">Nombre completo: <small class="text-info">{{userData.name}} {{userData.surname1}} {{userData.surname2}}</small></small><br>
                         <small class="text-primary">Correo: <small class="text-info">{{userData.email}}</small></small><br>
                         <small class="text-primary ">DNI: <small class="text-info">{{userData.dni}}</small></small><br>
+                        <small class="text-primary ">Edad: <small class="text-info">{{userData.age}}</small></small><br>
                         <small class="text-primary ">Sexo: <small class="text-info">{{userData.gender}}</small></small><br>
                         <small class="text-primary ">Dirección: <small class="text-info">{{userData.street}} {{userData.streetNum}} {{userData.floor}}</small></small><br>
                         <small class="text-primary ">Localidad: <small class="text-info">{{userData.location}}</small></small><br>
@@ -24,24 +25,5 @@
             </div>
     </div>  
 </div>
-
-<!--<div class="row">
-    <div class="col-12">
-        <h1 class="text-success my-5">DETALLE DE USUARIOS</h1>
-    </div>
-    <div class="col-12">
-        <div class="row">
-            <div class="col-12 col-md-6 col-xl-3 mb-4 text-center">
-                <img class ="dsc-user-img" src="{{userData.avatar}}" alt="">
-            </div>
-            <div class="col-12 col-md-6 col-xl-9 pl-4">
-                <h2 class="text-primary border-bottom pb-3">Detalle de {{userData.name}}</h2>
-                <small class="text-primary">Edad: {{userData.surname1}}</small>
-                <small class="text-primary border-bottom pb-3">Puesto: {{userData.surname2}}</small>
-                <p class="text-primary">{{userData.dni}}</p>
-            </div>
-        </div>
-    </div>  
-</div>-->
 
 <app-footer></app-footer>

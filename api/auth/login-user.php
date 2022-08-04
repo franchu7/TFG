@@ -29,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $payload = [
                     'iss' => "localhost",
-                    //'aud' => 'localhost',
-                    'exp' => time() + 2000, //10 minutes
+                    'exp' => time() + 1000, //10 minutes
                     'id' => $id,
                     'email' => $email,
                     'role' => $role             

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDataComponent } from './user-data/user-data.component';
+import { UserProfileComponent } from 'src/app/shared/components/user-profile/user-profile.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserUpdateComponent } from './user-update/user-update.component';
+import { UserUpdateComponent } from '../../shared/components/user-update/user-update.component';
 
 const routes: Routes = [
   {
@@ -16,11 +16,15 @@ const routes: Routes = [
   },
   {
     path: 'user/:id',
-    component: UserDataComponent
+    component: UserProfileComponent
   },
   {
     path: 'userUpdate/:id',
     component: UserUpdateComponent
+  },
+  {
+    path: 'adminProfile',
+    component: UserProfileComponent
   },
   {
     path: '**',

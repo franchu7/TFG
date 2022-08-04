@@ -5,6 +5,7 @@ import { StudentCardComponent } from './components/student-card/student-card.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -13,7 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ConfirmDialogComponent,
     StudentCardComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

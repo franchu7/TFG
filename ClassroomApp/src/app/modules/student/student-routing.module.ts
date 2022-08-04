@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudentComponent } from './student.component';
+import { UserProfileComponent } from 'src/app/shared/components/user-profile/user-profile.component';
+import { UserUpdateComponent } from '../../shared/components/user-update/user-update.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: StudentComponent
-  }
+    redirectTo: '/student/studentProfile',
+    pathMatch: 'full'   
+  },
+  {
+    path: 'studentProfile',
+    component: UserProfileComponent  
+  },
+  {
+    path: 'updateStudent',
+    component: UserUpdateComponent
+  },
 ];
 
 @NgModule({

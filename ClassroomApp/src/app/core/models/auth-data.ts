@@ -11,6 +11,7 @@ export interface RegisterData {
         surname2?: string,
     ],
     dni: string;
+    age: number;
     gender: string;
     address: [
         roadType: string,
@@ -37,6 +38,7 @@ export interface RegisterDataFromDB {
     surname1: string,
     surname2?: string,
     dni: string;
+    age: number;
     gender: string;
     street: string,
     streetNum: string,
