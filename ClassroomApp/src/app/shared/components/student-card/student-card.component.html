@@ -14,13 +14,16 @@
             <div class="icons-edit">     
                 <i class="fa fa-edit fa-2x" (click)="updateStudentData(user.id)"></i>    
             </div>
+            
         </div>
     </div>   
     
-    <div class="card-body">
-      <small class="nombre font-weight-bold">{{user.name}} {{user.surname1}} {{user.surname2}}</small>
-      <div class="icons-grades">     
-        <i class="fa fa-graduation-cap fa-2x" (click)="getStudentGrades(user.id)"></i>    
+    <div class="card-body row">
+        <div class="col-9">
+            <small class="nombre font-weight-bold">{{user.name}} {{user.surname1}} {{user.surname2}}</small>
+        </div>
+        <div class="icons-grades col-3">     
+            <i class="fa fa-graduation-cap fa-2x" style="float: right" (click)="getStudentGrades(user.id)"></i>    
         </div>
     
     </div>
