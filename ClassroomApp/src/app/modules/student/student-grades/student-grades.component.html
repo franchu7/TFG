@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="container pb-5">
+    <div class="header mt-3 py-2 mx-5 text-center">
+        <h1>Calificaciones del alumno</h1>
+    </div>   
+        <div class="group bg-dark row  py-5 px-5 mx-5 mt-3 mb-5"> 
+            <div class="col-12">  
+                <div class="row" *ngIf="role =='admin'">
+                    <button type="button" class="btn btn-primary mb-3" routerLink="/admin/updateGrade/{{userData.id}}" >
+                        Calificar alumno
+                    </button>
+                </div>      
+                <div class="row">
+                    <div class="student col">
+                        <div class="py-3 d-flex justify-content-center align-items-center">
+                            <img class ="avatar" src="{{userData.avatar}}" alt="">
+
+                        </div>
+                        <div class="text-center font-weight-bold">
+                            <small class="text-light"> {{userData.name}} {{userData.surname1}} {{userData.surname2}}</small>
+                        </div>
+                    </div> 
+                    <div class="col">
+
+                        <div class="data row px-4 py-4" *ngFor="let grade of grades; let i = index">
+                            
+                            <div class="col-6">
+                                <small class="text-primary" *ngIf="subjects[i]">{{subjects[i].name}}</small>
+                            </div>
+                            <div class="col-6">
+                                <small class="grade text-white bg-warning rounded px-2" *ngIf="grade.grade === null">SIN CALIFICAR</small>
+                                <small class="grade text-white rounded px-2" [ngClass]="grade.grade >= 5 ? 'bg-success' : 'bg-danger'" *ngIf="grade.grade !== null">{{grade.grade}}</small>
+                            </div>
+                        </div>
+
+                        <div class="mt-5" *ngIf="!grades">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="text-center">
+                                    <img class="sadFace" src="/assets/img/sad-face.png" alt="">
+                                    <h1 class=" fw-bold text-white">¡Vaya!</h1>
+                                    <p class="fs-3 text-white">No existen asignaturas</p>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>   
+                </div>
+            </div>
+    </div>  
+</div>
+
+<app-footer></app-footer>

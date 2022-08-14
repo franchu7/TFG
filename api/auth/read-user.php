@@ -12,6 +12,9 @@ $obj = new Database();
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     
    try{
+
+    //Obtener los datos del usuario a través de la decodificación de su token
+
     $allheaders=getallheaders();
     $auth=explode(' ', $allheaders['Authorization']);
     $jwt = $auth[1];
@@ -21,6 +24,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     
     $data=$user_data;
     echo json_encode([
+        'status' => 1,
+        'message' => 'Usuario leído correctamente',
         'data' => $data
     ]);
    }catch(Exception $e){
@@ -32,6 +37,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }else {
     echo json_encode([
         'status' => 0,
-        'message' => 'Access Denied',
+        'message' => 'Acceso denegado',
     ]);
 }

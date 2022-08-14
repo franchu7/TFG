@@ -14,21 +14,22 @@
             <span class="navbar-toggler-icon"></span>
   
         </button>
+        <!-- Navbar para el administrador -->
         <div class="collapse navbar-collapse" *ngIf="getRoleUser() == 'admin'" id="navbarNav">
             <ul class="navbar-nav">
-              <!-- Página para mostrar los datos del usuario que ha iniciado sesión -->
+              <!-- Página para mostrar los datos del administrador -->
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/admin/adminProfile">Datos del administrador</a>
               </li>
 
-              <!-- Página para la lista de usuarios -->
+              <!-- Página para la lista de alumnos -->
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/userList">Lista de usuarios</a>
+                <a class="nav-link" aria-current="page" href="/admin/studentList">Lista de alumnos</a>
               </li>
 
-              <!-- Página para la lista de usuarios con sus notas (Todavía no se ha realizado...) -->
+              <!-- Página para la lista de asignaturas -->
               <li class="nav-item">
-                <a class="nav-link" href="#">Notas de usuarios</a>
+                <a class="nav-link" aria-current="page" href="/admin/subjectList">Lista de asignaturas</a>
               </li>
 
               <!-- Cerrar la sesión actual -->
@@ -42,21 +43,22 @@
             </ul>
         </div>
 
+        <!-- Navbar para el alumno -->
         <div class="collapse navbar-collapse" *ngIf="getRoleUser() == 'student'" id="navbarNav">
           <ul class="navbar-nav">
-            <!-- Página para mostrar los datos del usuario que ha iniciado sesión -->
+            <!-- Página para mostrar los datos del alumno -->
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/student/studentProfile">Datos del estudiante</a>
+              <a class="nav-link" aria-current="page" href="/student/studentProfile">Datos del alumno</a>
             </li>
  
-            <!-- Página para la lista de usuarios -->
+            <!-- Página para actualizar los datos del alumno -->
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/student/updateStudent">Modificar datos</a>
             </li>
 
-            <!-- Página para la lista de usuarios -->
+            <!-- Página para visualizar las calificaciones del alumno -->
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Consultar notas</a>
+              <a class="nav-link" aria-current="page" href="/student/studentGrades">Consultar calificaciones</a>
             </li>
 
             <!-- Cerrar la sesión actual -->

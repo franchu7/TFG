@@ -10,7 +10,7 @@ class Database
     private $result = array();
     private $conn = false;
 
-    //connect database using consturcted method
+    // Conectarse a la base de datos "Classroom" desde localhost
     public function __construct()
     {
         if (!$this->conn) {
@@ -26,7 +26,7 @@ class Database
         }
     }
 
-    // insert data
+    // Insertar datos
     public function insert($table, $params = array())
     {
         if ($this->tableExist($table)) {
@@ -46,7 +46,7 @@ class Database
         }
     }
 
-    // get data
+    // Obtener datos
     public function select($table, $row = "*", $join = null, $where = null, $order = null, $limit = null)
     {
         if ($this->tableExist($table)) {
@@ -75,7 +75,7 @@ class Database
         }
     }
 
-    // update data
+    // Actualizar datos
     public function update($table, $params = array(), $where = null)
     {
         if ($this->tableExist($table)) {
@@ -98,7 +98,8 @@ class Database
             return false;
         }
     }
-    // delete data
+    
+    // Eliminar datos
     public function delete($table, $where = null)
     {
         if ($this->tableExist($table)) {
@@ -118,7 +119,8 @@ class Database
             return false;
         }
     }
-    // table exist
+
+    // Comprobar si una tabla existe
     private function tableExist($table)
     {
         $sql = "SHOW TABLES FROM $this->database LIKE '{$table}'";
@@ -127,14 +129,14 @@ class Database
             if ($tableInDb->num_rows  == 1) {
                 return true;
             } else {
-                array_push($this->result, $table . " Does not Exist");
+                array_push($this->result, $table . " no existe en la base de datos");
             }
         } else {
             return false;
         }
     }
 
-    // get result
+    // Obtener el resultado de la acción y reiniciar su valor
     public function getResult()
     {
         $val = $this->result;
@@ -142,7 +144,7 @@ class Database
         return $val;
     }
 
-    // close the connection
+    // Cerrar la conexión con la base de datos
     public function __destruct()
     {
         if ($this->conn) {

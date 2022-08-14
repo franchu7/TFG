@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { TokenInfo } from 'src/app/core/models/auth-data';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenInfo } from 'src/app/core/models/auth-data.model';
 import { NgToastService } from 'ng-angular-popup';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -69,12 +69,9 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
 
-    console.log(this.loginForm.value);
-
     const { email, password } = this.loginForm.value;
 
     this.authService.login(email, password).subscribe((res) => {
-      console.log(res);
       if(res.status == 0) {
         this.loading = false;
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});

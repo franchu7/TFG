@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="container pb-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-7 ">
+            <div class="header mt-3 py-2 mx-5 text-center">
+                <h1>Matricular alumno en asignatura</h1>
+            </div>   
+            <div class="group bg-dark py-5 px-5 mx-5 mt-3 mb-5 text-white">       
+                <form [formGroup]="linkForm" (ngSubmit)="submitForm()">
+                    <div class="row"> 
+                        <div class="col-6">
+                            <!--------------------- Alumno ---------------------> 
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="name">Alumno</label>
+                                <select class="form-select mb-1" aria-label="" formControlName="studentID">
+                                    <option value="" disabled selected hidden>Seleccione un alumno</option>
+                                    <option [value]="student.id" *ngFor="let student of studentList;" >{{student.name}} {{student.surname1}}</option> 
+                                    <option value="0">--Todos--</option>
+                                </select>
+                                <small class="bg-danger px-2 py-1 rounded" *ngIf="linkForm.get('studentID')!.errors && formSubmitted">
+                                    El nombre es requerido  
+                                </small> 
+                            </div>
+                        </div>
+
+                        <div class="col-6"> 
+                            <!--------------------- Asignatura ---------------------> 
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="name">Asignatura</label>
+                                <select class="form-select mb-1" aria-label="" formControlName="subjectID">
+                                    <option value="" disabled selected hidden>Seleccione una asignatura</option>
+                                    <option [value]="subject.id" *ngFor="let subject of subjectList;" >{{subject.name}}</option> 
+                                </select>
+                                <small class="bg-danger px-2 py-1 rounded" *ngIf="linkForm.get('subjectID')!.errors && formSubmitted">
+                                    La asignatura es requerida
+                                </small> 
+                            </div>
+                        </div>
+    
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit">
+                            Matricular alumno
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm "></span>  
+                        </button> 
+                    </div>
+                </form>
+            </div>  
+        </div>  
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="container pt-3 pb-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+            <div class="mb-md-4 mt-md-3 pb-0">
+
+              <h2 class="fw-bold mb-2 text-uppercase text-center">Crear asignatura</h2>
+              <p class="text-white-50 mb-3 text-center">Introduzca el nombre y la descripción</p>
+
+              <!-- Formulario de registro de una asignatura -->
+              <form [formGroup]="subjectForm" (ngSubmit)="submitForm()">
+
+                <!--------------------- Nombre ---------------------> 
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="name">Nombre</label>
+                    <input type="text" class="form-control form-control-lg mb-1" formControlName="name" />
+                    <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="subjectForm.get('name')!.errors && formSubmitted">
+                        <ng-container [ngSwitch]="subjectForm.get('name')!.value">
+                            <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>   
+                            <ng-container *ngSwitchDefault>El nombre es inválido</ng-container>   
+                        </ng-container>
+                    </small> 
+                </div>
+                
+                <!--------------------- Descripcion ---------------------> 
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="description">Descripción</label>
+                  <textarea class="form-control form-control-lg mb-1" rows="3" formControlName="description"></textarea>
+                  <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="subjectForm.get('description')!.errors && formSubmitted">
+                      <ng-container [ngSwitch]="subjectForm.get('description')!.value">
+                          <ng-container *ngSwitchCase="''">La descripción es requerida</ng-container>   
+                          <ng-container *ngSwitchDefault>La descripción tiene que tener menos de 255 caracteres</ng-container>   
+                      </ng-container>
+                  </small> 
+                </div>
+                <button class="btn btn-outline-light btn-lg px-5 mb-3" type="submit">
+                  Enviar                  
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm "></span>       
+                </button>   
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

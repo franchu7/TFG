@@ -10,9 +10,15 @@ $obj = new Database();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents("php://input", true));
+
+    // Datos de inicio de sesión
+
     $email = htmlentities($data->email);
     $password = htmlentities($data->password);
     
+    // Comprobar si existe el usuario, en caso de que exista
+    // verificar su contraseña y tras eso crear un token JWT 
+    // con la sesión del usuario
     $obj->select('users', '*', null, "email='{$email}'", null, null);
     $datas = $obj->getResult();
     if(!empty($datas)) {
@@ -29,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $payload = [
                     'iss' => "localhost",
+                    'iat' => time(),
                     'exp' => time() + 1000, //10 minutes
                     'id' => $id,
                     'email' => $email,
@@ -39,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 echo json_encode([
                     'status' => 1,
-                    'token' => $jwt,
                     'message' => 'Inicio de sesión correcto',
+                    'data' => $jwt
                 ]);
             }
         }

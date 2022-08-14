@@ -1,0 +1,67 @@
+.card {
+    background: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);    border: 6px solid rgba(0,0,0,0.25);
+    border-radius: 20px;
+    box-shadow: 0px 0px 1px 1px black;
+    margin: 1rem auto;
+
+
+    &-img {
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        float: left;
+    }
+
+    img {
+        background: beige;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.15);      
+    }
+    
+
+    &-body {
+        float: right;
+    }
+}
+
+.icons {
+    &-trash {
+        color: red;
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+    }
+    &-trash:hover {
+        transform: scale(1.2);
+    }
+
+    &-mGlass {
+        color: blue;
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+    }
+    &-mGlass:hover {
+        transform: scale(1.2);
+    }
+
+    &-edit {
+        color: green;
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+    }
+    &-edit:hover {
+        transform: scale(1.2);
+    }
+    
+    float: right;
+    
+    //margin: -35px -30px; */
+}
+
+
+
+.nombre {
+    font-size: medium;
+    font-weight: bold;
+}

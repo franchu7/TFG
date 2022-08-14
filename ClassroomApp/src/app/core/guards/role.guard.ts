@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { TokenInfo } from '../models/auth-data';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenInfo } from '../models/auth-data.model';
 import { NgToastService } from 'ng-angular-popup';
 import { JwtHelperService } from '@auth0/angular-jwt';
 

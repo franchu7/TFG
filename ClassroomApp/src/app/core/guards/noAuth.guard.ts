@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgToastService } from 'ng-angular-popup';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { TokenInfo } from '../models/auth-data';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenInfo } from '../models/auth-data.model';
 
 @Injectable({
   providedIn: 'root'

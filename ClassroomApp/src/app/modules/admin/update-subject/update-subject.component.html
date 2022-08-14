@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container pb-5">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="header mt-3 py-2 text-center">
+          <h1>Actualizar asignatura</h1>
+      </div> 
+      <div class="card mt-3 mb-5 bg-dark text-white" style="border-radius: 1rem;">
+        <div class="card-body p-5">
+          <div class="mb-md-4 mt-md-3 pb-0">
+
+            <div class="imgDiv py-3 d-flex justify-content-center align-items-center">            
+              <img id="avatar" class ="img" src="{{subjectData.avatar}}" alt="">   
+            </div>
+            <input type="file" accept="image/*" class="file-upload mt-1 mb-3" (change)="onSelectImage($event)" >
+
+            <div class="col-12"> 
+              <form [formGroup]="updateSubjectForm" (ngSubmit)="submitForm()">
+                <!--------------------- Nombre ---------------------> 
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="name">Nombre</label>
+                  <input type="text" class="form-control form-control-lg mb-1" formControlName="name" />
+                  <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateSubjectForm.get('name')!.errors && formSubmitted">
+                    <ng-container [ngSwitch]="updateSubjectForm.get('name')!.value">
+                        <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>   
+                        <ng-container *ngSwitchDefault>El nombre es inválido</ng-container>   
+                    </ng-container>
+                  </small> 
+                </div>
+                
+                <!--------------------- Descripcion ---------------------> 
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="description">Descripción</label>
+                  <textarea class="form-control form-control-lg mb-1" rows="3" formControlName="description"></textarea>
+                  <small class="bg-danger mt-1 px-2 py-1 rounded" *ngIf="updateSubjectForm.get('description')!.errors && formSubmitted">
+                    <ng-container [ngSwitch]="updateSubjectForm.get('description')!.value">
+                        <ng-container *ngSwitchCase="''">La descripción es requerida</ng-container>   
+                        <ng-container *ngSwitchDefault>La descripción tiene que tener menos de 255 caracteres</ng-container>   
+                    </ng-container>
+                  </small> 
+                </div>
+
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">
+                  Actualizar datos
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm "></span>  
+                </button> 
+              </form>
+            </div>
+          </div>    
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+
+<app-footer></app-footer>

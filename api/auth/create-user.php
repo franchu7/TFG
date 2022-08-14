@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $data = json_decode(file_get_contents("php://input", true));
 
+    // Datos de registro del usuario
 
     $name = $data->person->name;
     $surname1 = $data->person->surname1;
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $role = $data->role;
     $avatar = $data->avatar;
 
-    // check user by email
+    // Comprobar si el email ya está registrado, si no, insertar un nuevo registro
     $obj->select("users", "email", null, "email='{$email}'", null, null);
     $is_email = $obj->getResult();
     if (isset($is_email[0]['email']) == $email) {

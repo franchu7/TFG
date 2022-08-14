@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterDataFromDB } from 'src/app/core/models/auth-data';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
+import { RegisterDataFromDB } from 'src/app/core/models/auth-data.model';
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { NgToastService } from 'ng-angular-popup';
-import { UserService } from '../../services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-student-card',
@@ -14,10 +12,11 @@ import { UserService } from '../../services/user.service';
 })
 
 /**
- * Componente que representa al usuario registrado en la web
+ * Componente que representa al alumno registrado en la web
  */
 export class StudentCardComponent implements OnInit {
 
+  // Datos del alumno
   @Input() user: RegisterDataFromDB = {
     id: 0,
     email: '',
@@ -52,10 +51,9 @@ export class StudentCardComponent implements OnInit {
   }
 
   
-  // Borrar al usuario
-  public deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe((res) => {
-      console.log(res);
+  // Borrar al alumno
+  public deleteStudent(id: number) {
+    this.userService.deleteStudent(id).subscribe((res) => {
       this.refresh();
     })
   }
@@ -65,7 +63,7 @@ export class StudentCardComponent implements OnInit {
     window.location.reload();
   }
 
-  // Método para el diálogo de confirmación en el borrado de un usuario
+  // Método para el diálogo de confirmación en el borrado de un alumno
   public openDialog(id: number): void {
     this.dialog
       .open(ConfirmDialogComponent, {
@@ -74,19 +72,24 @@ export class StudentCardComponent implements OnInit {
       .afterClosed()
       .subscribe((confirmed: Boolean) => {
         if (confirmed) {
-          this.deleteUser(id);
+          this.deleteStudent(id);
         }
       });
   }
 
   // Obtener la información del usuario mostrándola en otra página
-  public getUserData(id: number) {
-    this.router.navigateByUrl('/admin/user/'+id);
+  public getStudentData(id: number) {
+    this.router.navigateByUrl('/admin/student/'+id);
   }
 
   // Actualizar la información del usuario mostrándo los datos del usuario en otra página
-  public updateUserData(id: number) {
-    this.router.navigateByUrl('/admin/userUpdate/'+id);
+  public updateStudentData(id: number) {
+    this.router.navigateByUrl('/admin/studentUpdate/'+id);
+  }
+
+  // Obtener las calificaciones del alumno y mostrarlas en otra página
+  public getStudentGrades(id: number) {
+    this.router.navigateByUrl('/admin/grades/'+id);
   }
 
 }

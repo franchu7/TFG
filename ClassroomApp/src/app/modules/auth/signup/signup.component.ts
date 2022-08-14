@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { RegisterData } from 'src/app/core/models/auth-data';
-import { matchPassword } from 'src/app/shared/models/customValidators';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { RegisterData } from 'src/app/core/models/auth-data.model';
+import { matchPassword } from 'src/app/shared/functions/customValidators';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
@@ -180,10 +180,8 @@ export class SignupComponent implements OnInit {
     this.dataForm = this.signupForm.value;
     this.dataForm.role = "student";
     this.dataForm.avatar = "assets/img/user-avatar.png";
-    console.log(this.dataForm);
 
     this.authService.register(this.dataForm).subscribe((res) => {
-      console.log(res);
       if(res.status == 2) {
         this.loading = false;
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});

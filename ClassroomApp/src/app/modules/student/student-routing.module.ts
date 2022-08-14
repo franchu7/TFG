@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserProfileComponent } from 'src/app/shared/components/user-profile/user-profile.component';
-import { UserUpdateComponent } from '../../shared/components/user-update/user-update.component';
+import { UpdateStudentComponent } from './update-student/update-student.component';
+import { StudentGradesComponent } from './student-grades/student-grades.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,12 @@ const routes: Routes = [
   },
   {
     path: 'updateStudent',
-    component: UserUpdateComponent
+    component: UpdateStudentComponent
   },
+  {
+    path: 'studentGrades',
+    component: StudentGradesComponent
+  }
 ];
 
 @NgModule({

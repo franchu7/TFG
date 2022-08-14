@@ -6,8 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
-
+import { SubjectCardComponent } from './components/subject-card/subject-card.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     StudentCardComponent,
     NavbarComponent,
     FooterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SubjectCardComponent,
+
   ],
   imports: [
     CommonModule,
@@ -25,7 +26,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ConfirmDialogComponent,
     StudentCardComponent,
     NavbarComponent,
-    FooterComponent  
+    FooterComponent,
+    SubjectCardComponent
   ]
 })
 export class SharedModule { }

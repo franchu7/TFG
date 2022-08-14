@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="container pb-5">
+    <div class="header mt-3 py-2 mx-5 text-center">
+        <h1>Datos de la asignatura</h1>
+    </div>   
+    <div class="group bg-dark row  py-5 px-5 mx-5 mt-3 mb-5"> 
+        <div class="col-12">        
+            <div class="row">
+                <div class="imgDiv col py-3 d-flex justify-content-center">
+                    <img class ="img" src="{{subject.avatar}}" alt="">
+                </div>
+                <div class="data col px-4 py-4 ">
+                    <small class="text-primary ">Nombre: <small class="text-info">{{subject.name}}</small></small><br>
+                    <small class="text-primary">Descripción: <span style="white-space: pre-wrap;" class="text-info">{{subject.description}}</span></small><br>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<app-footer></app-footer>

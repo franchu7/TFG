@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { matchPassword } from 'src/app/shared/models/customValidators';
-import { UserService } from 'src/app/shared/services/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { matchPassword } from 'src/app/shared/functions/customValidators';
 
 @Component({
   selector: 'app-change-pw',
@@ -79,12 +79,9 @@ export class ChangePWComponent implements OnInit {
 
     this.loading = true;
 
-    console.log(this.changePWForm.value);
-
     const { email, password } = this.changePWForm.value;
 
     this.userService.updatePassword(email, password).subscribe((res) => {
-      console.log(res);
       if(res.status == 0) {
         this.loading = false;
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});
