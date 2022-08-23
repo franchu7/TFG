@@ -1,0 +1,12 @@
+<h1>Nombre del componente padre: {{parentName}}</h1>
+
+<h2>Nombre del componente hijo (Modelo --> Vista):</h2>
+<input type="text" [value]="componentName">
+
+<h2>Nombre del componente hijo (Vista --> Modelo):</h2>
+<input type="text" (input)="getValue($event)">
+
+<h2>Nombre del componente hijo (Vista <--> Modelo):</h2>
+<input type="text" [(ngModel)]="componentName">
+
+<p>first-comp works!</p>

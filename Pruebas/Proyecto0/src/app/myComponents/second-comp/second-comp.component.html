@@ -1,0 +1,12 @@
+<p>second-comp works!</p>
+
+<p>Pipe personalizada para los usuarios: {{users | myPipe:1 | json}}</p>
+
+
+<div *ngIf="users.length != 0; else vacio">
+    <h1>Lista de usuarios</h1>
+    <div *ngFor="let user of users">
+        <h2>{{user.name}}</h2>
+    </div>
+</div>
+<ng-template #vacio><h1>Lista vacía</h1></ng-template>
