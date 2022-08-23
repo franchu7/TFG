@@ -5,9 +5,11 @@ import { MainService } from './main.service';
 
 describe('MainService', () => {
   let service: MainService;
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [HttpClient]
     });
     service = TestBed.inject(MainService);
   });
