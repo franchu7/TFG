@@ -16,6 +16,7 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
+  // Crear una nueva asignatura 
   public createSubject(subjectData: Subject) {
     return this.http.post<ResponseData>(env.apiUrl+'/subjects/create-subject.php', {subjectData});
   }

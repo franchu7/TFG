@@ -37,7 +37,7 @@ export class AuthService {
       );
   }
 
-  // Método para comprobar si el usuario ha inciiado sesión
+  // Método para comprobar si el usuario ha inciado sesión
   public isLoggedIn(): boolean {
     if(this.getToken()) {
       if(this.jwtHS.isTokenExpired(this.getToken()!)) {
@@ -69,6 +69,11 @@ export class AuthService {
   // Método para registrarse
   public register(data: RegisterData) {
     return this.http.post<ResponseData>(env.apiUrl+'/auth/create-user.php', data);
+  }
+
+  // Actualizar la contraseña de un usuario
+  public updatePassword(email: string, password: string) {
+    return this.http.post<ResponseData>(env.apiUrl+'/users/update-password.php', {email, password});
   }
 
   

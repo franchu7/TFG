@@ -30,10 +30,7 @@ export class UserService {
     return this.http.post<ResponseData>(env.apiUrl+'/users/delete-student.php', {id});
   }
 
-  // Actualizar la contraseña de un usuario
-  public updatePassword(email: string, password: string) {
-    return this.http.post<ResponseData>(env.apiUrl+'/users/update-password.php', {email, password});
-  }
+  
 
   // Actualizar los datos de un alumno
   public updateStudent(id:number, userData: RegisterData) {

@@ -81,7 +81,7 @@ export class ChangePWComponent implements OnInit {
 
     const { email, password } = this.changePWForm.value;
 
-    this.userService.updatePassword(email, password).subscribe((res) => {
+    this.authService.updatePassword(email, password).subscribe((res) => {
       if(res.status == 0) {
         this.loading = false;
         this.toastService.error({detail: "Error en el servidor", summary: res.message, duration:3000});

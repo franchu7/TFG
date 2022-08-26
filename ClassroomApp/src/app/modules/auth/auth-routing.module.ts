@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NoAuthGuard } from 'src/app/core/guards/noAuth.guard';
-import { AuthGuard } from 'src/app/core/guards/auth.guard';
-import { RoleGuard } from 'src/app/core/guards/role.guard';
-import { ChangePWComponent } from './changePW/change-pw/change-pw.component';
+import { ChangePWComponent } from './changePW/change-pw.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
