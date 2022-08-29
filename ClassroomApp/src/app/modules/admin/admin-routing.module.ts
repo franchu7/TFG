@@ -63,7 +63,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/admin/userList'
+    redirectTo: '/admin/studentList'
   }
 ];
 

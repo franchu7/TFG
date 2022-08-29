@@ -9,8 +9,7 @@ import { StudentGradesComponent } from './student-grades/student-grades.componen
 
 @NgModule({
   declarations: [
-  
-    StudentGradesComponent,
+    StudentGradesComponent
   ],
   imports: [
     CommonModule,
